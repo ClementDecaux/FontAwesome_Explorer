@@ -7,7 +7,7 @@ def get_version():
     query = "query { release (version: \"6.x\") { version } }"
     return client.execute(query)['data']['release']['version']
 
-def search_icon(searched_terms: str, limit: int, free_only=True):
+def get_icon_info(icon_query: str, limit: int = 15, free_only: bool = True, full_info: bool = False):
 
     free_block = 'free { family style }'
     pro_block = 'pro { family style }'
@@ -17,16 +17,22 @@ def search_icon(searched_terms: str, limit: int, free_only=True):
     else:
         family_style_block = 'familyStylesByLicense {%s %s}' % (free_block, pro_block)
 
+    if full_info:
+        full_info_block = 'unicode label %s' % (family_style_block)
+    else:
+        full_info_block = ''
+
     query = """query search_icon($version: String!, $query: String!, $limit: Int)
     {
         search (version: $version, query: $query, first: $limit) 
         {
-            id unicode label %s
+            id %s
         }
-    }""" % (family_style_block)
+    }""" % (full_info_block)
 
-    variables = {'version': "6.x", "query": searched_terms, "limit": limit}
+    variables = {'version': "6.x", "query": icon_query, "limit": limit}
     return client.execute(query, variables)['data']['search']
 
-def get_ids(result: list):
-    return [icon['id'] for icon in result]
+def get_icon_id(icon_info: list):
+    return [icon['id'] for icon in icon_info]
+

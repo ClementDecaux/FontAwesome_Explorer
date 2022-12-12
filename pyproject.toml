@@ -3,12 +3,12 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fa-explorer"
+name = "fagit a-explorer"
 version = "0.0.1"
 authors = [
   { name="Clément Decaux", email="decauxclement1@gmail.com" },
 ]
-description = "Package to retrieve icon ID from string query on fontawesome "
+description = "Package to retrieve icon ID from string query on fontawesome"
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
@@ -22,5 +22,5 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+"Homepage" = "https://github.com/ClementDecaux/FontAwesome_Explorer"
+"Bug Tracker" = "https://github.com/ClementDecaux/FontAwesome_Explorer/issues"
